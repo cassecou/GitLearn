@@ -1,7 +1,10 @@
 #include<stdio.h>
 
-void main(){
+void fun(){
 	printf("Hello World!");
 
-return();
+}
+void main(){
+	fun();
+	return();
 }
