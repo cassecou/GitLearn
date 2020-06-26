@@ -10,3 +10,9 @@ void minus(){
 	printf("%d", &diff);
 	return();
 }
+
+void multiply(){
+	int product = a*b;
+	printf("%d", &product);
+	return ();
+}
