@@ -8,3 +8,6 @@ int sub(int x, int y){
 int product(int x, int y){
 	return x*y;
 }
+int quotient(int x, int y){
+	return x/y;
+}
