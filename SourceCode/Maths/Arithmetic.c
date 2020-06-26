@@ -21,3 +21,7 @@ void div(){
 	printf("%d", &q);
 	return();
 }
+<<<<<<< HEAD:SourceCode/Maths/Arithmetic.c
+=======
+
+>>>>>>> Testing:SourceCode/Arithmetic.c
