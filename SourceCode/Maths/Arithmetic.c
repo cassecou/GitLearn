@@ -21,6 +21,10 @@ void div(){
 	printf("%d", &q);
 	return();
 }
+
+void fact(){
+	//code for factorial
+}
 <<<<<<< HEAD:SourceCode/Maths/Arithmetic.c
 =======
 
