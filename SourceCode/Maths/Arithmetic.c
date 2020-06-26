@@ -16,3 +16,8 @@ void multiply(){
 	printf("%d", &product);
 	return ();
 }
+void div(){
+	int q = a/b;
+	printf("%d", &q);
+	return();
+}
