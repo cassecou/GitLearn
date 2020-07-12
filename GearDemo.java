@@ -38,7 +38,11 @@ class Gear{
 	}
 
 	public double getGearInches() {
-		return this.getRatio()*wheel.getDiameter();
+		return this.getRatio()*this.diameter();
+	}
+
+	private double diameter(){
+		return wheel.getDiameter();
 	}
 }
 
@@ -49,17 +53,20 @@ public class GearDemo{
 		System.out.println("Gear 1 ratio : " + gear1.getRatio());
 		System.out.println("Gear 2 ratio : " + gear2.getRatio());
 
-/*		System.out.println("\n****Compare gear inches now **** \n");
+		/*
+		System.out.println("\n****Compare gear inches now **** \n");
 
 		Gear gear3 = new Gear(55, 11, 1, 1.5);
 		Gear gear4 = new Gear(40, 20, 2, 2.5);
 		System.out.println("            Gear 3 | Gear 4");
 		System.out.println("_____________________________");
 		System.out.println("Ratio        " + gear3.getRatio() + "   | " + gear4.getRatio());
-		System.out.println("Gear Inches  " + gear3.getGearInches() + "  | " + gear4.getGearInches());*/
+		System.out.println("Gear Inches  " + gear3.getGearInches() + "  | " + gear4.getGearInches());
+		*/
 
 		BicycleWheel wheel = new BicycleWheel(26, 1.5);
 		System.out.println("\nCircumference of the wheel = " + wheel.getCircumference());
+		
 		Gear gear5 = new Gear(40, 20, wheel);
 		System.out.println("Ratio = " + gear5.getRatio()+ "  Gear inches = " + gear5.getGearInches());
 	}
