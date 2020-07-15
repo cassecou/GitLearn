@@ -1,6 +1,6 @@
 package learningJava;
 
-class Bicycle {
+abstract class Bicycle {
 	private char cycleSize;
 	private static int chain = 10;
 	private double tireSize;
@@ -22,7 +22,11 @@ class Bicycle {
 	protected void spares(){
 		System.out.println("Chain : " + chain);
 		System.out.println("Tire Size : " + tireSize);
+		this.localSpares();
 	}
+
+	abstract void localSpares();
+
 }
 
 class RoadBike extends Bicycle {
@@ -37,8 +41,8 @@ class RoadBike extends Bicycle {
 		this.tapeColor = tapeColor;
 	}
 
-	public void spares() {
-		super.spares();
+	public void localSpares() {
+		//super.spares();
 		System.out.println("Tape color : " + tapeColor);
 	}
 }
@@ -57,8 +61,8 @@ class MountainBike extends Bicycle {
 		this.rearShock = rearShock;
 	}
 
-	public void spares() {
-		super.spares();
+	public void localSpares() {
+		//super.spares();
 		System.out.println("Rear-shock : " + rearShock);
 	}
 }
