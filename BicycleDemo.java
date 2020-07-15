@@ -1,5 +1,43 @@
 package learningJava;
 
+enum Config {ROAD, MOUNTAIN};
+
+class PartsFactory {
+	private String[][] configuration;
+
+	public Parts build(Config config){
+		switch(config) {
+			case ROAD:{
+				configuration = new String[][]{ 
+					{"chain", "10-speed"},
+					{"tire size", "23"},
+					{"tape color", "Red"}
+				};
+				break;
+			}
+
+			case MOUNTAIN: {
+				configuration = new String[][]{ 
+					{"chain", "10-speed"},
+					{"tire size", "2.1"},
+					{"front shock", "Manitou", "false"},
+					{"rear shock", "Fox"}
+				};
+				break;
+			}
+		}
+		int n = configuration.length;
+		Part[] parts = new Part[n];
+		for(int i = 0; i < n; i++) {
+			parts[i] = new Part(configuration[i][0], configuration[i][1], configuration[i].length==2 ? true : false);	
+		}
+
+		return new Parts(parts);
+	}
+
+
+}
+
 class Part {
 	private String name, description;
 	private boolean needSpare;
@@ -53,20 +91,13 @@ class Bicycle {
 
 public class BicycleDemo {
 	public static void main(String args[]){
-		Part chain = new Part("chain", "10-speed", true);
-		Part roadTire = new Part("tire size", "23", true);
-		Part tapeColor = new Part("tape color", "Red", true);
-
-		Part mountainTire = new Part("tire size", "2.1", true);
-		Part frontShock = new Part("front shock", "Manitou", false);
-		Part rearShock = new Part("rear shock", "Fox", true);
-
-		Bicycle roadBike = new Bicycle( 'M', new Parts(new Part[] {chain, roadTire, tapeColor}));
+		
+		Bicycle roadBike = new Bicycle( 'M', new PartsFactory().build(Config.ROAD));
 		System.out.println("*** Road bike ***");
 		System.out.println("Cycle size : " + roadBike.getCycleSize());
 		roadBike.spares();
 
-		Bicycle mountainBike = new Bicycle( 'S', new Parts( new Part[] {chain, mountainTire, frontShock, rearShock}));
+		Bicycle mountainBike = new Bicycle( 'S', new PartsFactory().build(Config.MOUNTAIN));
 		System.out.println("*** Mountain bike ***");
 		System.out.println("Cycle size : " + mountainBike.getCycleSize());
 		mountainBike.spares();
