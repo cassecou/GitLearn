@@ -1,22 +1,11 @@
 package learningJava;
 
-abstract class Bicycle {
-	private char cycleSize;
+abstract class Parts {
 	private static int chain = 10;
 	private double tireSize;
 
-	Bicycle(char cycleSize, double tireSize){
-		this.cycleSize = cycleSize;
+	Parts(double tireSize){
 		this.tireSize = tireSize;
-	}
-
-	Bicycle(){
-		this.cycleSize = 'S';
-		this.tireSize = 2.5;
-	}
-
-	public char getCycleSize() {
-		return cycleSize;
 	}
 
 	protected void spares(){
@@ -26,18 +15,38 @@ abstract class Bicycle {
 	}
 
 	abstract void localSpares();
+}
+
+
+class Bicycle {
+	private char cycleSize;
+	private Parts parts;
+
+	Bicycle(char cycleSize,Parts parts){
+		this.cycleSize = cycleSize;
+		this.parts = parts;
+	}
+
+
+	public char getCycleSize() {
+		return cycleSize;
+	}
+
+	protected void spares(){
+		parts.spares();
+	}
 
 }
 
-class RoadBike extends Bicycle {
+class RoadBikeParts extends Parts {
 	private String tapeColor;
-	RoadBike(char cycleSize, double tireSize, String tapeColor) {
-		super(cycleSize, tireSize);
+	RoadBikeParts(double tireSize, String tapeColor) {
+		super(tireSize);
 		this.tapeColor = tapeColor;
 	}
 
-	RoadBike(char cycleSize, String tapeColor) {
-		super(cycleSize, 23);
+	RoadBikeParts(String tapeColor) {
+		super(23);
 		this.tapeColor = tapeColor;
 	}
 
@@ -47,16 +56,16 @@ class RoadBike extends Bicycle {
 	}
 }
 
-class MountainBike extends Bicycle {
+class MountainBikeParts extends Parts {
 	private String frontShock, rearShock;
-	MountainBike(char cycleSize, double tireSize, String frontShock, String rearShock) {
-		super(cycleSize, tireSize);
+	MountainBikeParts(double tireSize, String frontShock, String rearShock) {
+		super(tireSize);
 		this.frontShock = frontShock;
 		this.rearShock = rearShock;
 	}
 
-	MountainBike(char cycleSize, String frontShock, String rearShock) {
-		super(cycleSize, 2.1);
+	MountainBikeParts(String frontShock, String rearShock) {
+		super(2.1);
 		this.frontShock = frontShock;
 		this.rearShock = rearShock;
 	}
@@ -70,15 +79,17 @@ class MountainBike extends Bicycle {
 
 public class BicycleDemo {
 	public static void main(String args[]){
-		RoadBike bike1 = new RoadBike('M', "Red");
+		Bicycle roadBike = new Bicycle( 'M', new RoadBikeParts("Red"));
 		System.out.println("*** Road bike ***");
-		System.out.println("Cycle size : " + bike1.getCycleSize());
-		bike1.spares();
+		System.out.println("Cycle size : " + roadBike.getCycleSize());
+		roadBike.spares();
 
-		MountainBike bike2 = new MountainBike('S', "Manitou", "Fox");
+		Bicycle mountainBike = new Bicycle( 'S', new MountainBikeParts("Manitou", "Fox"));
 		System.out.println("*** Mountain bike ***");
-		System.out.println("Cycle size : " + bike2.getCycleSize());
-		bike2.spares();
+		System.out.println("Cycle size : " + mountainBike.getCycleSize());
+		mountainBike.spares();
 
 	}
 }
+
+
